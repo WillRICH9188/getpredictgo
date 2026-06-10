@@ -71,7 +71,7 @@ const base = `/${locale}`;
   }
 
   .main-scroll a {
-    padding: 12px 0;
+    padding: 12px 4px;
     white-space: nowrap;
     color: var(--muted);
     text-decoration: none;
@@ -79,6 +79,8 @@ const base = `/${locale}`;
     font-weight: 500;
     transition: all 0.3s ease;
     border-bottom: 2px solid transparent;
+    flex-shrink: 0;
+    min-width: fit-content;
   }
 
   .main-scroll a:hover {
