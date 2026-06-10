@@ -1,0 +1,15 @@
+---
+import { LOCALES, LOCALE_NAMES, type Locale } from '../consts';
+const { current } = Astro.props as { current: Locale };
+---
+<select class="langsel" onchange="location.href=this.value" aria-label="Language">
+  {LOCALES.map((loc) => (
+    <option value={`/${loc}/`} selected={loc === current}>{LOCALE_NAMES[loc]}</option>
+  ))}
+</select>
+<script is:inline>
+  // 記住使用者手動選的語言
+  document.querySelector('.langsel')?.addEventListener('change', (e) => {
+    try { localStorage.setItem('pg_lang', e.target.value.replaceAll('/','')); } catch(_){}
+  });
+</script>

@@ -1,0 +1,22 @@
+---
+import { SITE, type Locale } from '../consts';
+import { t } from '../i18n/ui';
+import LangSwitcher from './LangSwitcher.astro';
+const { locale } = Astro.props as { locale: Locale };
+const base = `/${locale}`;
+---
+<header class="site">
+  <div class="wrap bar">
+    <a class="brand" href={`${base}/`}>Predict <span>Go</span></a>
+    <nav class="main">
+      <a href={`${base}/basics/`}>{t(locale,'nav.basics')}</a>
+      <a href={`${base}/how-to/`}>{t(locale,'nav.howto')}</a>
+      <a href={`${base}/sports/`}>{t(locale,'nav.sports')}</a>
+      <a href={`${base}/politics/`}>{t(locale,'nav.politics')}</a>
+      <a href={`${base}/finance/`}>{t(locale,'nav.finance')}</a>
+      <a href={`${base}/data/`}>{t(locale,'nav.data')}</a>
+    </nav>
+    <div class="spacer"></div>
+    <LangSwitcher current={locale} />
+  </div>
+</header>

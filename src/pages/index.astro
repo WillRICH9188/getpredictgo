@@ -1,0 +1,35 @@
+---
+// 根網址 / ：依使用者語言/上次選擇自動導向到對應語言版本
+import { SITE } from '../consts';
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Predict Go</title>
+    <link rel="canonical" href={`${SITE.domain}/en/`} />
+    <meta http-equiv="refresh" content="0; url=/en/" />
+    <script is:inline>
+      (function () {
+        var supported = ['en', 'zh-cn', 'hi'];
+        var target = 'en';
+        try {
+          var saved = localStorage.getItem('pg_lang');
+          if (saved && supported.indexOf(saved) > -1) {
+            target = saved;
+          } else {
+            var n = (navigator.language || 'en').toLowerCase();
+            if (n.indexOf('zh') === 0) target = 'zh-cn';
+            else if (n.indexOf('hi') === 0) target = 'hi';
+            else target = 'en';
+          }
+        } catch (e) {}
+        location.replace('/' + target + '/');
+      })();
+    </script>
+  </head>
+  <body>
+    <p>Redirecting… <a href="/en/">Continue</a></p>
+  </body>
+</html>

@@ -1,0 +1,66 @@
+import type { Locale } from '../consts';
+
+// 介面文字（選單、按鈕、頁尾等）。新增語言時補上對應區塊即可。
+export const ui: Record<Locale, Record<string, string>> = {
+  'en': {
+    'nav.basics': 'Basics',
+    'nav.howto': 'How to Play',
+    'nav.sports': 'Sports',
+    'nav.politics': 'Politics',
+    'nav.finance': 'Finance',
+    'nav.data': 'Data Insights',
+    'hero.title': 'Understand what the world is predicting.',
+    'hero.subtitle': 'Neutral data and analysis on global prediction markets — odds, hit rates, and trends, explained.',
+    'hero.cta': 'Join our free Telegram channel',
+    'home.latest': 'Latest insights',
+    'cta.title': 'Get daily prediction-market insights',
+    'cta.body': 'Market odds, hot events, and data breakdowns — straight to your Telegram.',
+    'cta.button': 'Join the channel',
+    'footer.disclaimer': 'For informational and educational purposes only. 18+. Please check the laws in your region.',
+    'footer.tagline': 'Independent analysis of global prediction markets.',
+    'lang.label': 'Language',
+    'readmore': 'Read more',
+  },
+  'zh-cn': {
+    'nav.basics': '入门认知',
+    'nav.howto': '怎么玩',
+    'nav.sports': '体育',
+    'nav.politics': '政治',
+    'nav.finance': '金融',
+    'nav.data': '数据洞察',
+    'hero.title': '看懂全世界正在预测什么。',
+    'hero.subtitle': '中立解读全球预测市场——概率、命中率、趋势，用数据说话。',
+    'hero.cta': '加入我们的免费电报频道',
+    'home.latest': '最新洞察',
+    'cta.title': '每日预测市场洞察',
+    'cta.body': '市场概率、热门事件、数据解读，直接送到你的电报。',
+    'cta.button': '加入频道',
+    'footer.disclaimer': '本站仅供资讯与教育用途。18 岁以上。请自行确认所在地区法律。',
+    'footer.tagline': '独立解读全球预测市场。',
+    'lang.label': '语言',
+    'readmore': '阅读更多',
+  },
+  'hi': {
+    'nav.basics': 'बेसिक्स',
+    'nav.howto': 'कैसे खेलें',
+    'nav.sports': 'खेल',
+    'nav.politics': 'राजनीति',
+    'nav.finance': 'वित्त',
+    'nav.data': 'डेटा इनसाइट्स',
+    'hero.title': 'समझें कि दुनिया क्या भविष्यवाणी कर रही है।',
+    'hero.subtitle': 'वैश्विक प्रेडिक्शन मार्केट्स का तटस्थ डेटा और विश्लेषण — ऑड्स, हिट रेट और ट्रेंड्स।',
+    'hero.cta': 'हमारा फ्री टेलीग्राम चैनल जॉइन करें',
+    'home.latest': 'नवीनतम इनसाइट्स',
+    'cta.title': 'रोज़ाना प्रेडिक्शन मार्केट इनसाइट्स पाएं',
+    'cta.body': 'मार्केट ऑड्स, हॉट इवेंट्स और डेटा ब्रेकडाउन — सीधे आपके टेलीग्राम पर।',
+    'cta.button': 'चैनल जॉइन करें',
+    'footer.disclaimer': 'केवल सूचना और शैक्षिक उद्देश्य के लिए। 18+। कृपया अपने क्षेत्र के कानून जांचें।',
+    'footer.tagline': 'वैश्विक प्रेडिक्शन मार्केट्स का स्वतंत्र विश्लेषण।',
+    'lang.label': 'भाषा',
+    'readmore': 'और पढ़ें',
+  },
+};
+
+export function t(locale: Locale, key: string): string {
+  return ui[locale]?.[key] ?? ui['en'][key] ?? key;
+}

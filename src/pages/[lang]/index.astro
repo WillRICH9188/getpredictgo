@@ -1,0 +1,331 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TelegramCTA from '../../components/TelegramCTA.astro';
+import { SITE, LOCALES, CATEGORIES, type Locale } from '../../consts';
+import { t } from '../../i18n/ui';
+
+export async function getStaticPaths() {
+  return LOCALES.map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang as Locale;
+const all = await getCollection('articles', (e) => e.data.lang === lang);
+all.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+function slugOf(id: string) { return id.split('/').slice(1).join('/'); }
+const catLabel: Record<string, string> = {
+  basics: t(lang,'nav.basics'), 'how-to': t(lang,'nav.howto'),
+  sports: t(lang,'nav.sports'), politics: t(lang,'nav.politics'),
+  finance: t(lang,'nav.finance'), data: t(lang,'nav.data'),
+};
+---
+<BaseLayout title={`Predict Go — ${t(lang,'hero.title')}`} description={t(lang,'hero.subtitle')} locale={lang}>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>{t(lang,'hero.title')}</h1>
+      <p>{t(lang,'hero.subtitle')}</p>
+      <a class="btn btn-primary" href={SITE.telegram} target="_blank" rel="noopener">{t(lang,'hero.cta')}</a>
+    </div>
+  </section>
+
+  <!-- Latest Articles Section -->
+  {all.length > 0 && (
+    <section class="latest-section">
+      <div class="section-header">
+        <h2>{t(lang,'home.latest')}</h2>
+      </div>
+      
+      <div class="articles-grid">
+        {all.slice(0, 12).map((a) => (
+          <article class="article-card">
+            <a href={`/${lang}/${a.data.category}/${slugOf(a.id)}/`}>
+              <div class="article-header">
+                <span class="category-badge">{catLabel[a.data.category]}</span>
+              </div>
+              <h3>{a.data.title}</h3>
+              <p class="description">{a.data.description}</p>
+              <div class="article-footer">
+                <span class="read-more">{t(lang,'readmore')} →</span>
+              </div>
+            </a>
+          </article>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- Category Navigation Section -->
+  <section class="categories-section">
+    <div class="section-header">
+      <h2>按分類瀏覽</h2>
+    </div>
+    
+    <div class="categories-grid">
+      {CATEGORIES.map((c) => (
+        <a class="category-link" href={`/${lang}/${c}/`}>
+          <div class="category-icon">📊</div>
+          <h3>{catLabel[c]}</h3>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <TelegramCTA locale={lang} />
+
+  <style>
+    .hero {
+      padding: 5rem 2rem;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(20,30,48,1) 0%, rgba(30,40,60,1) 100%);
+    }
+    .hero-content h1 {
+      font-size: clamp(2rem, 8vw, 3.5rem);
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    .hero-content p {
+      font-size: clamp(1rem, 3vw, 1.25rem);
+      margin-bottom: 2.5rem;
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+    .btn-primary {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: #2563eb;
+      color: white;
+      border-radius: 0.5rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    .btn-primary:hover {
+      background: #1d4ed8;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(37,99,235,0.3);
+    }
+
+    .latest-section, .categories-section {
+      padding: 4rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+    .section-header h2 {
+      font-size: clamp(1.5rem, 5vw, 2.5rem);
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    /* Articles Grid - Responsive with explicit breakpoints */
+    .articles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .article-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 0.75rem;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+    }
+    .article-card a {
+      padding: 2rem;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .article-card:hover {
+      border-color: rgba(37,99,235,0.5);
+      background: rgba(37,99,235,0.05);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    .article-header {
+      margin-bottom: 1.5rem;
+    }
+    .category-badge {
+      display: inline-block;
+      background: rgba(37,99,235,0.2);
+      color: #60a5fa;
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .article-card h3 {
+      font-size: 1.15rem;
+      margin: 0 0 1rem 0;
+      line-height: 1.5;
+      flex-grow: 0;
+      min-height: 3.5rem;
+      font-weight: 600;
+    }
+    .description {
+      font-size: 1rem;
+      opacity: 0.85;
+      margin: 0 0 1.5rem 0;
+      flex-grow: 1;
+      line-height: 1.6;
+    }
+
+    .article-footer {
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      margin-top: auto;
+    }
+    .read-more {
+      color: #60a5fa;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    .article-card:hover .read-more {
+      color: #93c5fd;
+    }
+
+    /* Categories Grid */
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .category-link {
+      background: rgba(37,99,235,0.1);
+      border: 1px solid rgba(37,99,235,0.3);
+      border-radius: 0.75rem;
+      padding: 2.5rem 2rem;
+      text-decoration: none;
+      color: inherit;
+      text-align: center;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
+      min-height: 180px;
+    }
+    .category-link:hover {
+      background: rgba(37,99,235,0.2);
+      border-color: rgba(37,99,235,0.6);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    }
+
+    .category-icon {
+      font-size: 3rem;
+    }
+    .category-link h3 {
+      font-size: 1.1rem;
+      margin: 0;
+      font-weight: 600;
+    }
+
+    /* Tablet: 1024px and below */
+    @media (max-width: 1024px) {
+      .articles-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.75rem;
+      }
+      .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.75rem;
+      }
+      .latest-section, .categories-section {
+        padding: 3rem 1.5rem;
+      }
+    }
+
+    /* Mobile: 640px and below */
+    @media (max-width: 640px) {
+      .hero {
+        padding: 3rem 1.5rem;
+      }
+      .hero-content h1 {
+        font-size: 1.75rem;
+        margin-bottom: 1rem;
+      }
+      .hero-content p {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+      }
+      .btn-primary {
+        padding: 0.875rem 2rem;
+        font-size: 0.95rem;
+      }
+
+      .latest-section, .categories-section {
+        padding: 2.5rem 1rem;
+      }
+
+      .section-header h2 {
+        font-size: 1.5rem;
+      }
+
+      .articles-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .article-card a {
+        padding: 1.5rem;
+      }
+      .article-card h3 {
+        font-size: 1.05rem;
+        min-height: auto;
+      }
+      .description {
+        font-size: 0.95rem;
+      }
+
+      .categories-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .category-link {
+        padding: 2rem 1.5rem;
+        min-height: 150px;
+      }
+      .category-icon {
+        font-size: 2.5rem;
+      }
+    }
+
+    /* Extra small devices */
+    @media (max-width: 375px) {
+      .hero {
+        padding: 2.5rem 1rem;
+      }
+      .hero-content h1 {
+        font-size: 1.5rem;
+      }
+      .hero-content p {
+        font-size: 0.95rem;
+      }
+      .article-card a {
+        padding: 1.25rem;
+      }
+      .category-link {
+        padding: 1.5rem 1rem;
+      }
+    }
+  </style>
+</BaseLayout>

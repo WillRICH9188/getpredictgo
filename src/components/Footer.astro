@@ -1,0 +1,15 @@
+---
+import { SITE, type Locale } from '../consts';
+import { t } from '../i18n/ui';
+const { locale } = Astro.props as { locale: Locale };
+---
+<footer class="site">
+  <div class="wrap">
+    <div class="tagline">Predict Go</div>
+    <div>{t(locale,'footer.tagline')}</div>
+    <div style="margin-top:10px">
+      <a href={SITE.telegram} target="_blank" rel="noopener">Telegram</a>
+    </div>
+    <div class="disclaimer">{t(locale,'footer.disclaimer')}</div>
+  </div>
+</footer>
