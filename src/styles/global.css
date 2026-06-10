@@ -55,5 +55,5 @@ footer.site .tagline{color:var(--text);font-weight:600;margin-bottom:6px}
   nav.main{flex-basis:100%;gap:12px;font-size:15px;order:3;justify-content:center}
   nav.main a{color:var(--muted)}
   .spacer{display:none}
-  .langsel{margin-left:0}
+  .langsel{margin-left:0;font-size:16px;padding:10px 14px;cursor:pointer}
 }
