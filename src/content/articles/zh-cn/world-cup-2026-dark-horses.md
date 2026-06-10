@@ -2,7 +2,7 @@
 title: "2026世界杯黑马怎么找?用预测市场数据筛出潜力冷门"
 description: "夺冠热门就那几支,真正的机会藏在「黑马」。用 Polymarket 数据看哪些非热门球队被市场悄悄看好、概率正在上升。"
 lang: "zh-cn"
-category: "how-to"
+category: "sports"
 pubDate: 2026-06-09
 keyword: "世界杯 黑马 冷门 怎么找"
 source: "Polymarket 世界杯冠军市场(截至 2026-06-09)"

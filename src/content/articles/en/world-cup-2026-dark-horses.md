@@ -2,7 +2,7 @@
 title: "How to Find 2026 World Cup Dark Horses Using Prediction-Market Data"
 description: "The favorites are obvious. The real opportunity hides among the dark horses. Use Polymarket data to spot which underdogs the market is quietly backing — and whose odds are rising."
 lang: "en"
-category: "how-to"
+category: "sports"
 pubDate: 2026-06-09
 keyword: "world cup dark horses how to find"
 source: "Polymarket World Cup winner market (as of 2026-06-09)"
