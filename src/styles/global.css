@@ -52,7 +52,7 @@ footer.site .tagline{color:var(--text);font-weight:600;margin-bottom:6px}
   .hero h1{font-size:30px}
   .bar{height:auto;padding:12px 12px;flex-wrap:wrap;gap:12px}
   .brand{font-size:26px;margin-right:auto}
-  nav.main{flex-basis:100%;gap:12px;font-size:15px;order:3;justify-content:center}
+  nav.main{flex-basis:100%;gap:12px;font-size:15px;order:3;justify-content:flex-start}
   nav.main a{color:var(--muted)}
   .spacer{display:none}
   .langsel{margin-left:0;font-size:14px;padding:7px 10px}
