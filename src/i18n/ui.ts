@@ -31,7 +31,7 @@ export const ui: Record<Locale, Record<string, string>> = {
     'hero.title': '看懂全世界正在预测什么。',
     'hero.subtitle': '中立解读全球预测市场——概率、命中率、趋势，用数据说话。',
     'hero.cta': '加入我们的免费电报频道',
-    'home.latest': '最新洞察',
+    'home.latest': '最新文章',
     'cta.title': '每日预测市场洞察',
     'cta.body': '市场概率、热门事件、数据解读，直接送到你的电报。',
     'cta.button': '加入频道',
