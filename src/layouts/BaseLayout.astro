@@ -32,8 +32,8 @@ const htmlLang = locale === 'zh-cn' ? 'zh-Hans' : locale;
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     {SITE.ga4Id && (
       <>
-        <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${SITE.ga4Id}`}></script>
-        <script define:vars={{ id: SITE.ga4Id }}>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${SITE.ga4Id}`}></script>
+        <script define:vars={{ id: SITE.ga4Id }} is:inline>
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());

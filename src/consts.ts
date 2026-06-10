@@ -24,5 +24,5 @@ export const LOCALE_NAMES: Record<Locale, string> = {
 };
 
 // 內容分類（對應產出規格的內容站結構）
-export const CATEGORIES = ['basics', 'how-to', 'guides', 'data'] as const;
+export const CATEGORIES = ['basics', 'how-to', 'sports', 'politics', 'finance', 'data'] as const;
 export type Category = (typeof CATEGORIES)[number];
