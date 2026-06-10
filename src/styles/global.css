@@ -11,12 +11,12 @@ body{margin:0;background:var(--bg);color:var(--text);
 a{color:var(--accent);text-decoration:none}
 a:hover{text-decoration:underline}
 .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
-header.site{border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(15,18,22,.85);backdrop-filter:blur(8px);z-index:10}
-.bar{display:flex;align-items:center;gap:18px;height:62px}
-.brand{font-weight:800;font-size:20px;color:var(--text)}
+header.site{border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(15,18,22,.95);backdrop-filter:blur(10px);z-index:10}
+.bar{display:flex;align-items:center;gap:32px;height:70px}
+.brand{font-weight:800;font-size:28px;color:var(--text);flex-shrink:0}
 .brand span{color:var(--accent)}
-nav.main{display:flex;gap:16px;flex-wrap:wrap;font-size:15px}
-nav.main a{color:var(--muted)}
+nav.main{display:flex;gap:28px;flex-wrap:wrap;font-size:15px;margin-left:16px}
+nav.main a{color:var(--muted);font-weight:500;transition:color 0.3s ease}
 nav.main a:hover{color:var(--text);text-decoration:none}
 .spacer{flex:1}
 .langsel{background:var(--panel);color:var(--text);border:1px solid var(--border);
