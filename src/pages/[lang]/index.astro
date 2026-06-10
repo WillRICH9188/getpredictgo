@@ -19,6 +19,15 @@ const catLabel: Record<string, string> = {
   sports: t(lang,'nav.sports'), politics: t(lang,'nav.politics'),
   finance: t(lang,'nav.finance'), data: t(lang,'nav.data'),
 };
+
+const catIcon: Record<string, string> = {
+  basics: 'school',
+  'how-to': 'sports_esports',
+  sports: 'sports_soccer',
+  politics: 'how_to_vote',
+  finance: 'trending_up',
+  data: 'bar_chart',
+};
 ---
 <BaseLayout title={`Predict Go — ${t(lang,'hero.title')}`} description={t(lang,'hero.subtitle')} locale={lang}>
   <!-- Hero Section -->
@@ -65,7 +74,7 @@ const catLabel: Record<string, string> = {
     <div class="categories-grid">
       {CATEGORIES.map((c) => (
         <a class="category-link" href={`/${lang}/${c}/`}>
-          <div class="category-icon">📊</div>
+          <i class="material-icons category-icon">{catIcon[c]}</i>
           <h3>{catLabel[c]}</h3>
         </a>
       ))}
@@ -232,7 +241,11 @@ const catLabel: Record<string, string> = {
     }
 
     .category-icon {
-      font-size: 3rem;
+      font-size: 3.5rem;
+      color: #60a5fa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .category-link h3 {
       font-size: 1.1rem;
