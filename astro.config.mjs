@@ -1,5 +1,4 @@
 import { defineConfig } from 'astro/config';
-import sitemap from '@astrojs/sitemap';
 
 // 站台主網域 —— 部署前確認與你註冊的網域一致
 export default defineConfig({
@@ -19,5 +18,4 @@ export default defineConfig({
       redirectToDefaultLocale: false,
     },
   },
-  integrations: [sitemap()],
 });
