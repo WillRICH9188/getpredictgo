@@ -30,18 +30,6 @@ const htmlLang = locale === 'zh-cn' ? 'zh-Hans' : locale;
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-    {SITE.ga4Id && (
-      <>
-        <script async src={`https://www.googletagmanager.com/gtag/js?id=${SITE.ga4Id}`}></script>
-        <script define:vars={{ id: SITE.ga4Id }} is:inline>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', id);
-        </script>
-      </>
-    )}
   </head>
   <body>
     <Header locale={locale} />
